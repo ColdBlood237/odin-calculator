@@ -1,5 +1,5 @@
 body {
-    background-color: aquamarine;
+    background-color: rgb(80, 64, 78);
     font-size: 36px;
 }
 
@@ -17,13 +17,16 @@ div {
 }
 
 #display {
-    background-color: black;
+    background-color: rgb(56, 1, 53);
+    padding: 0 16px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    color: rgb(227, 169, 230);
+    text-align: end;
 }
 
 .operator {
-    background-color: lightblue;
+    background-color: rgb(171, 121, 161);
     border: 1px solid lightgray;
 }
 
@@ -45,7 +48,7 @@ div {
 
 #equals {
     border-bottom-right-radius: 20px;
-    background-color: rgba(21, 129, 202, 0.857);
+    background-color: rgba(187, 21, 202, 0.857);
     border: 1px solid lightgray;
     line-height: 400px;
     grid-row-start: 2;
