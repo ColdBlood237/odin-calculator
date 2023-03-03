@@ -1,6 +1,7 @@
 body {
     background-color: rgb(80, 64, 78);
     font-size: 36px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 div {
@@ -30,6 +31,8 @@ div {
     border: 1px solid lightgray;
 }
 
+#point,
+#cancel,
 .digit {
     border: 1px solid lightgray;
     background-color: white;
