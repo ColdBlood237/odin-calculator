@@ -100,6 +100,9 @@ digits.forEach(digit => {
             secondOperandInputted = true;
         }
         populateDisplay(e.target.textContent);
+
+        doFlashAnimation(e.target, "#e6e6e6");
+        resetOperatorsButtonsColor();
     });
 });
 
@@ -116,6 +119,7 @@ operators.forEach(ope => {
         operatorSaved = true;
         waitingSecondOperand = true;
 
+        darkenOperatorButton(e.target);
     });
 });
 
@@ -125,9 +129,11 @@ equals.addEventListener("click", e => {
     populateDisplay(operate(operator, +a, +b));
     operatorSaved = false;
     secondOperandSaved = false;
+    doFlashAnimation(e.target, "#9611a2");
+    resetOperatorsButtonsColor();
 });
 
-clear.addEventListener("click", () => {
+clear.addEventListener("click", (e) => {
     a = null;
     b = null;
     operator = null;
@@ -137,12 +143,15 @@ clear.addEventListener("click", () => {
     secondOperandSaved = false;
     firstInput = true;
     display.textContent = "0";
+    doFlashAnimation(e.target, "#e6e6e6");
+    resetOperatorsButtonsColor();
 });
 
-point.addEventListener("click", () => {
+point.addEventListener("click", (e) => {
     if (!display.textContent.includes(".")) {
         display.textContent += ".";
     }
+    doFlashAnimation(e.target, "#e6e6e6");
 })
 
 function populateDisplay(keyPressed) {
@@ -151,4 +160,24 @@ function populateDisplay(keyPressed) {
 
 function cleanDisplay() {
     display.textContent = "";
+}
+
+function doFlashAnimation(button, flashedColor) {
+    let defaultColor = button.style.backgroundColor;
+    button.style.backgroundColor = flashedColor;
+    setTimeout(() => {
+        button.style.backgroundColor = defaultColor;
+    }, 100);
+}
+
+function darkenOperatorButton(button) {
+    resetOperatorsButtonsColor()
+    button.style.backgroundColor = "#7e4f74"
+}
+
+function resetOperatorsButtonsColor() {
+    let defaultColor = "rgb(171, 121, 161)";
+    operators.forEach(ope => {
+        ope.style.backgroundColor = defaultColor;
+    });
 }
