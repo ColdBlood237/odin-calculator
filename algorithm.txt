@@ -1,0 +1,25 @@
+when digit pressed
+    if flag waiting second operand or first input is true
+        clean display 
+        reset both flags
+        flag second operand inputted = true
+    populate display
+
+when operator pressed
+    if flag second operand inputted is true
+        store display value in variable "b"
+        clean display
+        call operate function and populate display 
+    store display value in a variable "a"
+    store the operator in a variable
+    flag 1st operand saved
+    flag operator saved = true
+    flag waiting second operand = true
+
+when user press = 
+    store value on display in variable "b"
+    clean display
+    call the operate function
+    populate the display with the returned value 
+    reset flag operator saved
+    reset flag second operand saved

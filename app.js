@@ -42,14 +42,19 @@ when digit pressed
     if flag waiting second operand or first input is true
         clean display 
         reset both flags
+        flag second operand inputted = true
     populate display
 
 when operator pressed
+    if flag second operand inputted is true
+        store display value in variable "b"
+        clean display
+        call operate function and populate display 
     store display value in a variable "a"
     store the operator in a variable
     flag 1st operand saved
-    flag operator saved
-    flag waiting second operand
+    flag operator saved = true
+    flag waiting second operand = true
 
 when user press = 
     store value on display in variable "b"
@@ -68,15 +73,22 @@ let b = null;
 let operator = null;
 let operatorSaved = false;
 let waitingSecondOperand = false;
+let secondOperandInputted = false;
 let secondOperandSaved = false;
 let firstInput = true;
 
 digits.forEach(digit => {
     digit.addEventListener("click", (e) => {
-        if (waitingSecondOperand || firstInput) {
+        if (firstInput) {
             cleanDisplay();
             firstInput = false;
+        }
+        else if (waitingSecondOperand) {
+            cleanDisplay();
             waitingSecondOperand = false;
+        }
+        if (operatorSaved) {
+            secondOperandInputted = true;
         }
         populateDisplay(e.target.textContent);
     })
@@ -84,9 +96,17 @@ digits.forEach(digit => {
 
 operators.forEach(ope => {
     ope.addEventListener("click", e => {
+        if (secondOperandInputted) {
+            b = display.textContent;
+            cleanDisplay();
+            populateDisplay(operate(operator, +a, +b));
+        }
+
         a = display.textContent;
         operator = e.target.textContent;
+        operatorSaved = true;
         waitingSecondOperand = true;
+
     })
 })
 
