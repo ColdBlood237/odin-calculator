@@ -19,15 +19,18 @@ function divide(a, b) {
 }
 
 function operate(operator, a, b) {
+    let result;
     if (operator === "+") {
-        return add(a, b);
+        result = add(a, b);
     } else if (operator === "-") {
-        return subtract(a, b);
+        result = subtract(a, b);
     } else if (operator === "*") {
-        return multiply(a, b);
+        result = multiply(a, b);
     } else if (operator === "÷") {
-        return divide(a, b);
+        result = divide(a, b);
     }
+    let roundedResult = Math.round(result * 100) / 100;
+    return roundedResult;
 }
 
 const display = document.getElementById("display");
