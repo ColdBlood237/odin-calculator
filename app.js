@@ -42,39 +42,7 @@ const operators = document.querySelectorAll(".operator");
 const equals = document.getElementById("equals");
 const clear = document.getElementById("clear");
 const point = document.getElementById("point");
-
-/*
-when digit pressed
-    if flag waiting second operand or first input is true
-        clean display 
-        reset both flags
-        flag second operand inputted = true
-    populate display
-
-when operator pressed
-    if flag second operand inputted is true
-        store display value in variable "b"
-        clean display
-        call operate function and populate display 
-    store display value in a variable "a"
-    store the operator in a variable
-    flag 1st operand saved
-    flag operator saved = true
-    flag waiting second operand = true
-
-when user press = 
-    store value on display in variable "b"
-    clean display
-    call the operate function
-    populate the display with the returned value 
-    reset flag operator saved
-    reset flag second operand saved
-
-when user press .
-    if there's no "." on the display
-        add .
-   
-*/
+const undo = document.getElementById("undo");
 
 // "a" and "b" are the operands
 let a = null;
@@ -101,7 +69,7 @@ digits.forEach(digit => {
         }
         populateDisplay(e.target.textContent);
 
-        doFlashAnimation(e.target, "#e6e6e6");
+        doFlashAnimation(e.target, "#cccccc");
         resetOperatorsButtonsColor();
     });
 });
@@ -143,7 +111,7 @@ clear.addEventListener("click", (e) => {
     secondOperandSaved = false;
     firstInput = true;
     display.textContent = "0";
-    doFlashAnimation(e.target, "#e6e6e6");
+    doFlashAnimation(e.target, "#e83e3e");
     resetOperatorsButtonsColor();
 });
 
@@ -151,8 +119,15 @@ point.addEventListener("click", (e) => {
     if (!display.textContent.includes(".")) {
         display.textContent += ".";
     }
-    doFlashAnimation(e.target, "#e6e6e6");
+    doFlashAnimation(e.target, "#cccccc");
 })
+
+undo.addEventListener("click", (e) => {
+    let valueOnDisplay = display.textContent;
+    display.textContent = valueOnDisplay.substring(0, valueOnDisplay.length - 1);
+    doFlashAnimation(e.target, "#ff5f77");
+})
+
 
 function populateDisplay(keyPressed) {
     display.textContent += keyPressed;
@@ -171,8 +146,8 @@ function doFlashAnimation(button, flashedColor) {
 }
 
 function darkenOperatorButton(button) {
-    resetOperatorsButtonsColor()
-    button.style.backgroundColor = "#7e4f74"
+    resetOperatorsButtonsColor();
+    button.style.backgroundColor = "#905a85";
 }
 
 function resetOperatorsButtonsColor() {

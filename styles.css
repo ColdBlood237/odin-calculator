@@ -27,16 +27,26 @@ div {
 }
 
 .operator {
-    background-color: rgb(171, 121, 161);
+    background-color: #ab79a1;
     border: 1px solid lightgray;
+}
+
+.operator:hover {
+    background-color: #a06794;
 }
 
 #point,
 #clear,
+#undo,
 .digit {
     border: 1px solid lightgray;
     background-color: white;
     padding: 0px 0;
+}
+
+.digit:hover,
+#point:hover {
+    background-color: #e6e6e6;
 }
 
 #keyboard {
@@ -50,11 +60,31 @@ div {
 }
 
 #equals {
-    border-bottom-right-radius: 20px;
-    background-color: rgba(187, 21, 202, 0.857);
+    background-color: #bb15cadb;
     border: 1px solid lightgray;
-    line-height: 400px;
+    line-height: 300px;
     grid-row-start: 2;
-    grid-row-end: 6;
+    grid-row-end: 5;
     grid-column: 4;
+}
+
+#equals:hover {
+    background-color: #a813b6;
+}
+
+#undo {
+    border-bottom-right-radius: 20px;
+    background-color: #ffb6c1;
+}
+
+#undo:hover {
+    background-color: #ff8a9c;
+}
+
+#clear {
+    background-color: #f08080;
+}
+
+#clear:hover {
+    background-color: #ec5f5f;
 }
