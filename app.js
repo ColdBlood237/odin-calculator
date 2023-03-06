@@ -27,6 +27,9 @@ function operate(operator, a, b) {
     } else if (operator === "*") {
         result = multiply(a, b);
     } else if (operator === "÷") {
+        if (b === 0) {
+            return "lmao";
+        }
         result = divide(a, b);
     }
     let roundedResult = Math.round(result * 100) / 100;
@@ -34,11 +37,11 @@ function operate(operator, a, b) {
 }
 
 const display = document.getElementById("display");
-const keyboard = document.getElementById("keyboard");
 const digits = document.querySelectorAll(".digit");
 const operators = document.querySelectorAll(".operator");
 const equals = document.getElementById("equals");
-const cancel = document.getElementById("cancel");
+const clear = document.getElementById("clear");
+const point = document.getElementById("point");
 
 /*
 when digit pressed
@@ -66,11 +69,14 @@ when user press =
     populate the display with the returned value 
     reset flag operator saved
     reset flag second operand saved
+
+when user press .
+    if there's no "." on the display
+        add .
    
 */
 
 // "a" and "b" are the operands
-let displayValue = null;
 let a = null;
 let b = null;
 let operator = null;
@@ -94,8 +100,8 @@ digits.forEach(digit => {
             secondOperandInputted = true;
         }
         populateDisplay(e.target.textContent);
-    })
-})
+    });
+});
 
 operators.forEach(ope => {
     ope.addEventListener("click", e => {
@@ -110,8 +116,8 @@ operators.forEach(ope => {
         operatorSaved = true;
         waitingSecondOperand = true;
 
-    })
-})
+    });
+});
 
 equals.addEventListener("click", e => {
     b = display.textContent;
@@ -119,6 +125,24 @@ equals.addEventListener("click", e => {
     populateDisplay(operate(operator, +a, +b));
     operatorSaved = false;
     secondOperandSaved = false;
+});
+
+clear.addEventListener("click", () => {
+    a = null;
+    b = null;
+    operator = null;
+    operatorSaved = false;
+    waitingSecondOperand = false;
+    secondOperandInputted = false;
+    secondOperandSaved = false;
+    firstInput = true;
+    display.textContent = "0";
+});
+
+point.addEventListener("click", () => {
+    if (!display.textContent.includes(".")) {
+        display.textContent += ".";
+    }
 })
 
 function populateDisplay(keyPressed) {

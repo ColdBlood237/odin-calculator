@@ -32,7 +32,7 @@ div {
 }
 
 #point,
-#cancel,
+#clear,
 .digit {
     border: 1px solid lightgray;
     background-color: white;
